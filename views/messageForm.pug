@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+    h1 Create New Post
+
+    if errors 
+        ul
+            each error in errors
+                li #{error.msg}
+
+    form(method="POST")
+        div
+            label(for="title") Title
+            br
+            input(type="text" name="title" id="title" placeholder="Title")
+
+        div
+           label(for="message") Enter Message
+                br
+                textarea(name="message", cols="50", rows="5" id="message" placeholder="Whats on your mind") 
+
+        div
+            button(type="submit") Post

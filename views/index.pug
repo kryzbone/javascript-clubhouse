@@ -2,3 +2,14 @@ extends layout
 
 block content
     h1 #{title}
+
+    div
+        h2 Create Message
+
+        form(action="/post" method="POST")
+            div
+                label(for="message") Enter Message
+                br
+                textarea(name="message", cols="50", rows="5" id="message") 
+            div
+                button(type="submit") Post

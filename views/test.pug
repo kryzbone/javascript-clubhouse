@@ -1,6 +1,23 @@
 extends layout
 
 block content
-    h1 Are You Wealthy to join the club?
+    h1 #{title}
 
-    
+    if(errors)
+        ul
+            each error in errors
+                li #{error.msg}
+
+    if question 
+        div
+            img(src=question.qn alt="question" width="1000")
+        br
+        form(method="POST") 
+            label(for="ans") Select Answer: 
+            br
+            - const styles = { width: "50%" }
+            select(name="ans" style=styles)
+                each opt in question.opt
+                    option(value=opt) #{opt.toUpperCase()}
+
+            button(type="submit") Submit
