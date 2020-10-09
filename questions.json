@@ -1,0 +1,52 @@
+[
+    {
+        "qn": "/carbons/carbon.png",
+        "ans": "a",
+        "opt": ["a", "b", "c"]
+    },
+    {
+        "qn": "/carbons/carbon1.png",
+        "ans": "b",
+        "opt": ["a", "b", "c"]
+    },
+    {
+        "qn": "/carbons/carbon2.png",
+        "ans": "b",
+        "opt": ["a", "b"]
+    },
+    {
+        "qn": "/carbons/carbon3.png",
+        "ans": "a",
+        "opt": ["a", "b"]
+    },
+    {
+        "qn": "/carbons/carbon4.png",
+        "ans": "b",
+        "opt": ["a", "b"]
+    },
+    {
+        "qn": "/carbons/carbon5.png",
+        "ans": "b",
+        "opt": ["a", "b", "c"]
+    },
+    {
+        "qn": "/carbons/carbon6.png",
+        "ans": "c",
+        "opt": ["a", "b", "c"]
+    },
+    {
+        "qn": "/carbons/carbon7.png",
+        "ans": "a",
+        "opt": ["a", "b"]
+    },
+    {
+        "qn": "/carbons/carbon8.png",
+        "ans": "b",
+        "opt": ["a", "b"]
+    },
+    {
+        "qn": "/carbons/carbon9.png",
+        "ans": "a",
+        "opt": ["a", "b"]
+    }
+]

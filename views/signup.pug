@@ -1,0 +1,38 @@
+extends layout
+
+block content
+
+    h1 Sign Up Form
+
+    if errors
+        ul
+            each error in errors
+                li #{error.msg}
+    
+    form(method="POST")
+        div
+            label(for="first") First Name
+            br
+            input(type="text" id="first" name="first" placeholder="First Name" value=(data? data.first : ""))
+
+        div
+            label(for="last") Last Name
+            br
+            input(type="text" id="last" name="last" placeholder="Last Name" value=(data? data.last : ""))
+ 
+        div
+            label(for="email") Email
+            br
+            input(type="email" id="email" name="email" placeholder="email" value=(data? data.email : ""))
+
+        div
+            label(for="password") Passowrd
+            br
+            input(type="password" id="password" name="password" placeholder="password" )
+
+        div
+            label(for="comfirm-password") Comfirm Password
+            br
+            input(type="password" id="" name="comfirm-password" placeholder="comfirm-password")
+        div
+            button(type="submit") Sign Up

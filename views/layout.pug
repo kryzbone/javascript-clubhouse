@@ -1,0 +1,23 @@
+doctype html
+html
+    head(lang="en")
+        meta(charset="utf-8")
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title JavaScript | Clubhouse
+
+    body
+        div
+            div
+                div
+                    a(href="/") Logo
+            br
+            div
+                if currentUser 
+                    a(href="/logout") Logout
+                else
+                    a(href="/login") Login #[span   ]
+
+                    a(href="/signup") Register
+        hr
+        
+        block content

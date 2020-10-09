@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+    h1 Login Form
+
+    if errors
+        ul
+            each error in errors
+                li #{error.msg}
+
+    form(method="POST")
+        div
+            label(for="email") Email
+            br
+            input(type="email" id="email" name="email" placeholder="Enter Email")
+
+        div
+            label(for="password") Password
+            br
+            input(type="password" id="password" name="password" placeholder="Enter Password")
+
+
+        div
+            button(type="submit") Login
