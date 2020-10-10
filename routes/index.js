@@ -1,16 +1,17 @@
 const router = require("express").Router()
 const { index } = require("../controllers/index")
+const { dash } = require("../controllers/dash");
 const { signupGet, signupPost } = require("../controllers/signup");
 const { loginGet, loginPost, logout } = require("../controllers/login");
 const { testGet, testPost } = require("../controllers/test");
 const { postGet, postPost } = require("../controllers/post");
-const { dash } = require("../controllers/dash");
 const { messageEdit, messageEditPost, messageDelete, messageDeletePost } = require("../controllers/message");
 
 
 
 
 router.get("/", index)
+router.get("/dash", dash)
 
 router.get("/signup", signupGet);
 router.post("/signup", signupPost);
@@ -24,8 +25,6 @@ router.post("/test", testPost)
 
 router.get("/post", postGet)
 router.post("/post", postPost)
-
-router.get("/dash", dash)
 
 router.get("/messages/edit/:id", messageEdit)
 router.post("/messages/edit/:id", messageEditPost)

@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 //message edit get handler
 exports.messageEdit =  (req, res, next) => {
     if(!req.isAuthenticated()) return res.redirect("/login")
-    
+
     const id = req.params.id;
 
     Message.findById(id)
@@ -20,7 +20,6 @@ exports.messageEdit =  (req, res, next) => {
             next(err)
         }
 
-        console.log(doc)
         res.render("messageForm", { data: doc  })
     })
 
@@ -85,7 +84,6 @@ exports.messageDelete = (req, res, next) => {
             next(err)
         }
 
-        console.log(doc)
         res.render("messageDelete", { data: doc  })
     })
 }

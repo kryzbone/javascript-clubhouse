@@ -10,7 +10,7 @@ block content
             div
                 label(for="message") Enter Message
                 br
-                textarea(name="message", cols="50", rows="5" id="message") 
+                textarea(name="message", cols="50", rows="5" id="message"  placeholder="Whats on your mind") #{""}
             div
                 button(type="submit") Post
 
@@ -20,6 +20,6 @@ block content
         div
             h3 #{msg.title}
             p #{msg.message}
-            
+        hr   
     else
          p There are no messages to display
