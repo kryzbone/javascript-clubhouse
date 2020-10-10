@@ -4,6 +4,7 @@ const { body, validationResult } = require("express-validator");
 
 
 exports.signupGet = (req, res) => {
+    if(req.isAuthenticated()) return res.redirect("/dash")
     res.render("signup")
 }
 

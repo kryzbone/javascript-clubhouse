@@ -1,0 +1,21 @@
+extends layout
+
+
+block content
+
+    h1 Delete Message
+
+    if errors
+        ul
+            each error in errors
+                li= error.msg
+        
+        button
+            a(href="/dash") Home
+
+    if data 
+        p Are you sure you want to delete this message
+
+        form(method="POST")
+            input(type="text" name="author" style="display: none" value=data.author)
+            button(type="submit") Delete

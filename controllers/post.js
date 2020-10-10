@@ -33,15 +33,15 @@ exports.postPost = [
         if(!error.isEmpty()) return res.render("messageForm", { errors: error.array(), data: req.body  })
 
         
-
         //create new message
         const message = Message({
-            title: req.body.title,
+            title: req.body.title || "Title",
             message: req.body.message,
             author: req.user._id
         })
 
-        console.log(message)
-
+        message.save()
+        .then(() => res.redirect("/dash"))
+        .catch(next)
     }
 ]

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    h1 Welcome
+    //- h1 Welcome  #{currentUser.fullName}
+
+    a(href="/post") Create New Post
+
+    hr
+
+    each msg in data
+        div
+            h3 #{msg.title}
+            p #{msg.message}
+            - const date = new Date(msg.date).toLocaleString().split(",")
+            p #[span By: ] #{msg.author.fullName}  #[span Date: ] #{date[0]}
+
+            if currentUser
+                if currentUser._id.toString() == msg.author._id.toString() || currentUser.admin
+                    p 
+                        button
+                            a(href="/messages/delete/" + msg._id) Delete   
+
+                        if currentUser._id.toString() == msg.author._id.toString()
+                            button
+                                a(href="/messages/edit/" + msg._id) Edit 
+        hr
+    
+    else 
+        p There are no messages to display

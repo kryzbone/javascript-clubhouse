@@ -1,12 +1,11 @@
-
-
 const router = require("express").Router()
-const Message = require("../models/message");
 const { index } = require("../controllers/index")
 const { signupGet, signupPost } = require("../controllers/signup");
 const { loginGet, loginPost, logout } = require("../controllers/login");
 const { testGet, testPost } = require("../controllers/test");
 const { postGet, postPost } = require("../controllers/post");
+const { dash } = require("../controllers/dash");
+const { messageEdit, messageEditPost, messageDelete, messageDeletePost } = require("../controllers/message");
 
 
 
@@ -26,7 +25,12 @@ router.post("/test", testPost)
 router.get("/post", postGet)
 router.post("/post", postPost)
 
-router.get("/dash", (req, res) => res.send("<h1> welcome to the dash"))
+router.get("/dash", dash)
+
+router.get("/messages/edit/:id", messageEdit)
+router.post("/messages/edit/:id", messageEditPost)
+router.get("/messages/delete/:id", messageDelete)
+router.post("/messages/delete/:id", messageDeletePost)
 
 
 

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 #{title}
+    h1 Welcome to  JavaScript Club House
 
     div
         h2 Create Message
@@ -13,3 +13,13 @@ block content
                 textarea(name="message", cols="50", rows="5" id="message") 
             div
                 button(type="submit") Post
+
+    hr
+
+    each msg in data
+        div
+            h3 #{msg.title}
+            p #{msg.message}
+            
+    else
+         p There are no messages to display

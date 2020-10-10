@@ -13,7 +13,7 @@ messageSchema = Schema({
         trim: true,
         required: true
     },
-    timeStamp: {
+    date: {
         type: Date,
         default: Date.now
     },
