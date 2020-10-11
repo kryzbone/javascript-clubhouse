@@ -1,5 +1,6 @@
 const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
+const { temp, emitter } = require("../cache")
 
 
 
@@ -8,6 +9,9 @@ exports.messageEdit =  (req, res, next) => {
     if(!req.isAuthenticated()) return res.redirect("/login")
 
     const id = req.params.id;
+
+    //check cache for data
+    if(temp[id]) return res.render("messageForm", { data: temp[id] })
 
     Message.findById(id)
     .exec((err, doc) => {
@@ -20,6 +24,8 @@ exports.messageEdit =  (req, res, next) => {
             next(err)
         }
 
+        //on success
+        temp[id] = doc
         res.render("messageForm", { data: doc  })
     })
 
@@ -56,9 +62,12 @@ exports.messageEditPost = [
             //on success
             doc.title = req.body.title || "Title"
             doc.message = req.body.message
-            doc.save((err) => {
+            doc.save((err, doc) => {
                 if(err) next(err)
 
+                //on success
+                emitter.emit("flushMessages")
+                temp[id] = doc
                 res.redirect("/dash")
             })
         })
@@ -73,6 +82,9 @@ exports.messageDelete = (req, res, next) => {
     
     const id = req.params.id
 
+    //check cache for data
+    if(temp[id]) return res.render("messageDelete", { data: temp[id] })
+
     Message.findById(id)
     .exec((err, doc) => {
         if(err) return next(err)
@@ -84,6 +96,7 @@ exports.messageDelete = (req, res, next) => {
             next(err)
         }
 
+        //on success
         res.render("messageDelete", { data: doc  })
     })
 }
@@ -103,6 +116,8 @@ exports.messageDeletePost = (req, res, next) => {
         .exec((err) => {
             if(err) next(err)
 
+            //on success
+            emitter.emit("flush")
             res.redirect("/dash")
         })
 

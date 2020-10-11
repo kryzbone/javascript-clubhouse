@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 Welcome  #{currentUser.fullName}
+    h1 Welcome  #{currentUser? currentUser.fullName : "My freind"}
 
     a(href="/post") Create New Post
 

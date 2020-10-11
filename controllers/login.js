@@ -35,7 +35,6 @@ exports.loginPost = [
 
                     })
                 } else {
-                    console.log(info)
                     res.render("login", {errors: [ info ] })
                 }
     

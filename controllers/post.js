@@ -1,7 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const Message = require("../models/message");
+const { temp, emitter } = require("../cache")
 
-let temp = {};
 
 
 //new post get handler
@@ -21,13 +21,10 @@ exports.postPost = [
     body("message").notEmpty().withMessage("You can't do that my friend").isString().trim().escape(),
 
     (req, res, next) => {
-        //cache user info
-        temp.msg = req.body
-
         //check if user is Logged in
         if(!req.isAuthenticated()) return res.redirect("/login")
 
-        //check for errors
+        //check for validation errors
         const error = validationResult(req)
 
         if(!error.isEmpty()) return res.render("messageForm", { errors: error.array(), data: req.body  })
@@ -41,7 +38,11 @@ exports.postPost = [
         })
 
         message.save()
-        .then(() => res.redirect("/dash"))
+        .then((doc) => {
+            emitter.emit("flushMessages")
+            temp[doc._id] = doc
+            res.redirect("/dash")
+        })
         .catch(next)
     }
 ]
