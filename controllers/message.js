@@ -11,7 +11,7 @@ exports.messageEdit =  (req, res, next) => {
     const id = req.params.id;
 
     //check cache for data
-    if(temp[id]) return res.render("messageForm", { data: temp[id] })
+    // if(temp[id]) return res.render("messageForm", { data: temp[id] })
 
     Message.findById(id)
     .exec((err, doc) => {
@@ -83,7 +83,7 @@ exports.messageDelete = (req, res, next) => {
     const id = req.params.id
 
     //check cache for data
-    if(temp[id]) return res.render("messageDelete", { data: temp[id] })
+    // if(temp[id]) return res.render("messageDelete", { data: temp[id] })
 
     Message.findById(id)
     .exec((err, doc) => {
@@ -117,7 +117,7 @@ exports.messageDeletePost = (req, res, next) => {
             if(err) next(err)
 
             //on success
-            emitter.emit("flush")
+            // emitter.emit("flush")
             res.redirect("/dash")
         })
 

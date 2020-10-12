@@ -6,7 +6,7 @@ const { temp } = require("../cache");
 exports.index = (req, res) => {
     if(req.isAuthenticated()) return res.redirect("/dash")
     
-    if(temp.indexMessages) return res.render("index", { data: temp.indexMessages })
+    // if(temp.indexMessages) return res.render("index", { data: temp.indexMessages })
 
 
     //fetch messages from the database

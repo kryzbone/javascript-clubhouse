@@ -7,7 +7,7 @@ const { temp } = require("../cache");
 exports.dash = (req, res, next) => {
     if(!req.isAuthenticated()) return res.redirect("/login");
 
-    if(temp.dashMessages) return res.render("dash", { data: temp.dashMessages })
+    // if(temp.dashMessages) return res.render("dash", { data: temp.dashMessages })
 
     //fetch messages from the database
     Message.find({})

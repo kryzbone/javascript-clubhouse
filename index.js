@@ -11,9 +11,11 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const indexRoute = require("./routes/index")
+const { emitter } = require("./cache")
 
 const bcrypt = require("bcrypt")
 
+emitter.emit("flush")
 
 //mongo db set up
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log("db connected"));
