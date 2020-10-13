@@ -9,9 +9,9 @@ exports.messageEdit =  (req, res, next) => {
     if(!req.isAuthenticated()) return res.redirect("/login")
 
     const id = req.params.id;
-
+    
     //check cache for data
-    // if(temp[id]) return res.render("messageForm", { data: temp[id] })
+    if(temp[id]) return res.render("messageForm", { data: temp[id] })
 
     Message.findById(id)
     .exec((err, doc) => {
@@ -71,7 +71,6 @@ exports.messageEditPost = [
                 res.redirect("/dash")
             })
         })
-
     }
 ]
 
@@ -83,7 +82,7 @@ exports.messageDelete = (req, res, next) => {
     const id = req.params.id
 
     //check cache for data
-    // if(temp[id]) return res.render("messageDelete", { data: temp[id] })
+    if(temp[id]) return res.render("messageDelete", { data: temp[id] })
 
     Message.findById(id)
     .exec((err, doc) => {
@@ -117,7 +116,7 @@ exports.messageDeletePost = (req, res, next) => {
             if(err) next(err)
 
             //on success
-            // emitter.emit("flush")
+            emitter.emit("flushMessages", id)
             res.redirect("/dash")
         })
 

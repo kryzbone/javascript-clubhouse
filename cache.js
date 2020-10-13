@@ -3,15 +3,16 @@ const emitter = new Emitter()
 
 let temp = {}
 
-//reset cache
-emitter.on("flush", () => temp = {})
+
+emitter.on("flush", () => {for(let key in temp) delete temp[key]} )
+
 
 //clear messages
-emitter.on("flushMessages", () => {
+emitter.on("flushMessages", (id) => {
+    if(id) delete temp[id]
     delete temp.indexMessages;
     delete temp.dashMessages;
-})
-
+}) 
 
 
 exports.temp = temp

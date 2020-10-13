@@ -3,7 +3,7 @@ const { body, validationResult } = require("express-validator")
 
 
 
-//log form handler
+//login form handler
 exports.loginGet = (req, res, next) => {
     if(req.isAuthenticated()) return res.redirect("/dash")
     res.render("login")

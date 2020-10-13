@@ -51,11 +51,13 @@ exports.testPost = async (req, res, next) => {
             })  
         }   
         
-    } else res.render("test", { title: "Are you wealthy to join the club?", errors: [{msg: "Something went wrong please try again"}] })
+    } else res.render("test", { title: "Are you wealthy to join the club?", question: ques[0], errors: [{msg: "Something went wrong please try again"}] })
     
 }
 
 
+
+//======================================== HELPER FUNCTIONS ======================================
 
 //shuffle questions
 function shuffle() {
@@ -66,6 +68,7 @@ function shuffle() {
         ques[j] = temp
     }
 }
+
 
 //tracker function
 function track(ran, cb) {

@@ -11,8 +11,8 @@ block content
         div
             h3 #{msg.title}
             p #{msg.message}
-            - const date = new Date(msg.date).toLocaleString().split(",")
-            p #[span By: ] #{msg.author.fullName}  #[span Date: ] #{date[0]}
+            - const date = new Date(msg.date).toLocaleString()
+            p #[span By: ] #{msg.author.fullName}  #[span Date: ] #{date}
 
             if currentUser
                 if currentUser._id.toString() == msg.author._id.toString() || currentUser.admin
