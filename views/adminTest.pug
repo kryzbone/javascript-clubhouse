@@ -1,0 +1,65 @@
+extends layout
+
+
+block content
+
+    h1 Admin Test
+
+    if questions 
+        div #[span(class="time")  ]  
+        form(method="POST")
+            each question in questions 
+                div
+                    img(src="../"+question.qn alt="question" width="1000") 
+                    br
+                    label Select Answer: 
+                    br
+                    - const styles = { width: "50%" }
+                    select(name=question.qn style=styles)
+                        each opt in question.opt
+                            option(value=opt) #{opt.toUpperCase()}
+                hr
+            button(type="submit") Submit     
+
+    else if  msg
+        h3 #{msg}
+        button
+            a(href="/dash") Home
+
+    else
+        p To Become an Admin you need to answer 10 JavaScript question in 3 mins 
+
+        p If you are ready to take the test click START
+
+        div 
+            button
+                a(href="/admintest/start") Start
+            
+            button
+                a(href="/dash") Cancel
+
+
+    script.
+        const timeDisplay = document.querySelector(".time");
+        let min = 2
+        let sec = 60
+        let clear;
+        if(timer) {
+           timeDisplay.textContent = min + ":" + sec + ' min(s)'
+           clear = setInterval( timer , 1000)
+        }
+
+        function timer() {
+            if(sec <= 00) {
+                sec = 60
+                min -= 1
+            }
+
+            if(min < 0) {
+                timeDisplay.textContent = "Time's Up"
+                return clearInterval(clear)
+            }
+            
+            sec -= 1
+            timeDisplay.textContent = (min) + ":" + (sec < 10 ? "0"+sec : sec ) + ' min(s)'
+        }

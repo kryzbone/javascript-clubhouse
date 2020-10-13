@@ -31,6 +31,10 @@ userSchema = Schema({
     admin: {
         type: Boolean,
         default: false
+    },
+    test : {
+        type: Date,
+        default: Date.now
     }
 })
 

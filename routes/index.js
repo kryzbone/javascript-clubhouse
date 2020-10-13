@@ -6,6 +6,7 @@ const { loginGet, loginPost, logout } = require("../controllers/login");
 const { testGet, testPost } = require("../controllers/test");
 const { postGet, postPost } = require("../controllers/post");
 const { messageEdit, messageEditPost, messageDelete, messageDeletePost } = require("../controllers/message");
+const { adminTest, adminTestStart, adminTestPost } = require("../controllers/adminTest");
 
 
 
@@ -30,6 +31,10 @@ router.get("/messages/edit/:id", messageEdit)
 router.post("/messages/edit/:id", messageEditPost)
 router.get("/messages/delete/:id", messageDelete)
 router.post("/messages/delete/:id", messageDeletePost)
+
+router.get("/adminTest", adminTest)
+router.get("/admintest/start", adminTestStart)
+router.post("/admintest/start", adminTestPost)
 
 
 
