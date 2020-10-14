@@ -4,6 +4,9 @@ block content
     h1 Welcome  #{currentUser? currentUser.fullName : "My freind"}
 
     a(href="/post") Create New Post
+    br
+    if !currentUser.admin
+        a(href="/admintest") Become an Admin
 
     hr
 

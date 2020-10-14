@@ -6,7 +6,7 @@ block content
     h1 Admin Test
 
     if questions 
-        div #[span(class="time")  ]  
+        div(class="time") #[span(class="min") #{min? min: 2} ] : #[span(class="sec") #{sec? (sec < 10 ? "0"+sec : sec ): 60} ] min(s)
         form(method="POST")
             each question in questions 
                 div
@@ -40,26 +40,30 @@ block content
 
 
     script.
-        const timeDisplay = document.querySelector(".time");
-        let min = 2
-        let sec = 60
+        const timeDisplay = document.querySelector(".time")
+        const min = document.querySelector(".min");
+        const sec = document.querySelector(".sec");
+    
+        let m = +min.textContent
+        let s = +sec.textContent
         let clear;
+
         if(timer) {
-           timeDisplay.textContent = min + ":" + sec + ' min(s)'
            clear = setInterval( timer , 1000)
         }
 
         function timer() {
-            if(sec <= 00) {
-                sec = 60
-                min -= 1
+            if(s <= 00) {
+                s = 60
+                m -= 1
             }
 
-            if(min < 0) {
+            if(m < 0) {
                 timeDisplay.textContent = "Time's Up"
                 return clearInterval(clear)
             }
             
-            sec -= 1
-            timeDisplay.textContent = (min) + ":" + (sec < 10 ? "0"+sec : sec ) + ' min(s)'
+            s -= 1
+            min.textContent = m 
+            sec.textContent = (s < 10 ? "0"+s : s )
         }

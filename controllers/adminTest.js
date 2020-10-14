@@ -5,8 +5,13 @@ const User = require("../models/user");
 //reading the questions
 const filename = "questions.json";
 const questions = JSON.parse( fs.readFileSync(filename));
+const results  = new Set();
 
-let time = 0;
+let min = 2;
+let sec = 60;
+let inProgress = false;
+let timeUp = false;
+let clear;
 
 
 
@@ -30,12 +35,16 @@ exports.adminTestStart = (req, res, next) => {
 
     if(req.user.admin) return res.redirect("/dash")
 
+    //test in progress
+    if(inProgress) return res.render("adminTest", { questions, min, sec })
+
     //check test date
     if(req.user.test > Date.now()) {
         res.render("adminTest", { msg: "Your next test is on " + req.user.test.toDateString() } ) 
     } else {
         //start timmer
-        setTimeout( timer , 1000 * 60)
+        inProgress = true
+        timer()
 
         res.render("adminTest", { questions })
     } 
@@ -50,7 +59,7 @@ exports.adminTestPost = (req, res, next) => {
     if(req.user.admin) return res.redirect("/dash")
 
     const answers = req.body
-    const results  = new Set()
+    
 
     //check answers
     questions.forEach((ques) => {
@@ -60,24 +69,24 @@ exports.adminTestPost = (req, res, next) => {
     })
 
     //check results
-    if(results.has(false) || time >= 3 ) {
+    if(results.has(false) || timeUp ) {
         const next = 1000 * 60 * 60 * 72
         const testDate = Date.now() + next
-        
-        User.findOne({}, (err, doc) => {
-            if(err) return next(err)
 
-            doc.test = testDate
-            doc.save()
-            .then(() => res.render("adminTest", { msg: "You Failed please try again in 3 days" }) )
-            .catch(next)
-        })
- 
-    } else {
-        User.findByIdAndUpdate(req.user._id, { admin: true }, (err, doc) => {
+        User.findByIdAndUpdate(req.user._id, { test: testDate }, (err) => {
             if(err) return next(err)
 
             //on success
+            reset()
+            res.render("adminTest", { msg: "You Failed please try again in 3 days" })
+        })  
+ 
+    } else {
+        User.findByIdAndUpdate(req.user._id, { admin: true }, (err) => {
+            if(err) return next(err)
+
+            //on success
+            reset()
             res.render("adminTest", { msg: "Congratulations you are now an admin" } )
         })  
     }
@@ -89,9 +98,27 @@ exports.adminTestPost = (req, res, next) => {
 
 //Timer function
 function timer() {
-    if(time < 3) {
-        time += 1
-        console.log(time)
-        setTimeout( timer , 1000 * 60)
+    console.log(min, sec)
+    if(sec <= 00) {
+        sec = 60
+        min -= 1
     }
+
+    if(min < 0) {
+       timeUp = true
+       inProgress = false
+    }else {
+        sec -= 1
+        clear = setTimeout( timer , 1000)
+    }  
+   
+}
+
+// Reset functions
+function reset() {
+    timeUp = false
+    inProgress = false
+    min = 2; sec = 60;
+    results.clear()
+    clearTimeout(clear)
 }

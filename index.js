@@ -16,7 +16,7 @@ const bcrypt = require("bcrypt")
 
 
 //mongo db set up
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log("db connected"));
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true }, () => console.log("db connected"));
 
 //Passport Set up
 passport.use(new LocalStrategy({
