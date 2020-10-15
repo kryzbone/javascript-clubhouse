@@ -3,46 +3,46 @@ extends layout
 
 block content
 
-    h1 Admin Test
+    h1(class="center-align") Admin Test
 
     if questions 
-        div(class="time") #[span(class="min") #{min? min: 2} ] : #[span(class="sec") #{sec? (sec < 10 ? "0"+sec : sec ): 60} ] min(s)
+        div(class="time teal white-text badge right") #[span(class="min") #{min||min==0? min: 2} ] : #[span(class="sec") #{sec||sec==0? (sec < 10 ? "0"+sec : sec ): 60} ] min
         form(method="POST")
             each question in questions 
                 div
-                    img(src="../"+question.qn alt="question" width="1000") 
+                    img(src="../"+question.qn alt="question" class="responsive-img") 
                     br
                     label Select Answer: 
-                    br
-                    - const styles = { width: "50%" }
-                    select(name=question.qn style=styles)
+                    select(name=question.qn class="browser-default")
                         each opt in question.opt
                             option(value=opt) #{opt.toUpperCase()}
-                hr
-            button(type="submit") Submit     
+                br
+
+            div(class="input-field center")
+                button(type="submit" class="btn waves-effect waves-blue blue ligthen-3") Submit     
 
     else if  msg
-        h3 #{msg}
-        button
-            a(href="/dash") Home
+        h5(class="center-align grey-text") #{msg}
+
+        div(class="center")
+            a(href="/dash" class="btn waves-effect waves-blue blue ligthen-3") Home
 
     else
-        p To Become an Admin you need to answer 10 JavaScript question in 3 mins 
+        p(class="center-align") To Become an Admin you need to answer 10 JavaScript question in 3 mins 
 
-        p If you are ready to take the test click START
+        p(class="center-align") If you are ready to take the test click START
 
-        div 
-            button
-                a(href="/admintest/start") Start
-            
-            button
-                a(href="/dash") Cancel
+        div(class="center")   
+            a(href="/admintest/start" class="btn waves-effect waves-blue blue ligthen-3 dash-btn") Start
+            a(href="/dash" class="btn waves-effect waves-blue blue ligthen-3") Cancel
 
 
     script.
         const timeDisplay = document.querySelector(".time")
         const min = document.querySelector(".min");
         const sec = document.querySelector(".sec");
+
+        
     
         let m = +min.textContent
         let s = +sec.textContent
@@ -60,7 +60,11 @@ block content
 
             if(m < 0) {
                 timeDisplay.textContent = "Time's Up"
-                return clearInterval(clear)
+                clearInterval(clear)
+                timeDisplay.classList.remove("teal")
+                timeDisplay.className += " red pulse"
+                console.log(timeDisplay.classList)
+                return
             }
             
             s -= 1

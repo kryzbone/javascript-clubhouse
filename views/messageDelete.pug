@@ -3,22 +3,28 @@ extends layout
 
 block content
 
-    h1 Delete Message
+    div(class="row")
+        div(class="col s12 m8 offset-m2 l6 offset-l3")
 
-    if errors
-        ul
-            each error in errors
-                li= error.msg
-        
-        button
-            a(href="/dash") Home
+            h1(class="center-align") Delete Message
 
-    if data 
-        p Are you sure you want to delete this message
+            if errors
+                ul
+                    each error in errors
+                        li 
+                            div(class="chip red ") 
+                                i(class="material-icons white-text left") error 
+                                span(class="white-text") #{error.msg}
+                                i(class="close material-icons white-text") close
 
-        form(method="POST")
-            input(type="text" name="author" style="display: none" value=data.author)
-            button(type="submit") Yes
+                a(href="/dash" class="btn waves-effect waves-blue blue ligthen-3") Home
 
-            button
-                a(href="/dash") Cancel
+            if data 
+                h6(class="center-align") Are you sure you want to delete this message
+
+                form(method="POST")
+                    input(type="text" name="author" style="display: none" value=data.author)
+
+                    div(class="input-field center")
+                        button(type="submit" class="btn waves-effect waves-red red ligthen-3 dash-btn") Yes
+                        a(href="/dash" class="btn waves-effect waves-blue blue ligthen-3") Cancel

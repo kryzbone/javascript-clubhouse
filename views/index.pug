@@ -1,25 +1,26 @@
 extends layout
 
 block content
-    h1 Welcome to  JavaScript Club House
+    h1(class="center-align") Welcome to  JavaScript Club House
 
-    div
-        h2 Create Message
+    div(class="row")
+        div(class="col s12 m8 offset-m2 center-align")
 
-        form(action="/post" method="POST")
-            div
-                label(for="message") Enter Message
-                br
-                textarea(name="message", cols="50", rows="5" id="message"  placeholder="Whats on your mind") #{""}
-            div
-                button(type="submit") Post
+            form(action="/post" method="POST")
+                div(class="input-field")
+                    textarea(name="message" id="message" class="materialize-textarea") #{""}
+                    label(for="message") What's on your mind
 
-    hr
+                div(class="input-field center")
+                    button(type="submit" class="btn waves-effect waves-blue blue ligthen-3 ") Post Message
+
+    
 
     each msg in data
-        div
-            h3 #{msg.title}
-            p #{msg.message}
-        hr   
+        div(class="card blue white-text text-darken-4 accent-3 hoverable")
+            div(class="card-content")
+                span(class="card-title") #{msg.title}
+                p #{msg.message}
+         
     else
          p There are no messages to display

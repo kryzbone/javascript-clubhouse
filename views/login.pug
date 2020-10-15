@@ -2,24 +2,30 @@ extends layout
 
 block content
 
-    h1 Login Form
+    div(class="row")
+        div(class="col s12 m8 offset-m2 l6 offset-l3")
 
-    if errors
-        ul
-            each error in errors
-                li #{error.msg}
+            h1(class="center-align") Login Form
 
-    form(method="POST")
-        div
-            label(for="email") Email
-            br
-            input(type="email" id="email" name="email" placeholder="Enter Email")
+            if errors
+                ul
+                    each error in errors
+                        li 
+                            div(class="chip red ") 
+                                i(class="material-icons white-text left") error 
+                                span(class="white-text") #{error.msg}
+                                i(class="close material-icons white-text") close
 
-        div
-            label(for="password") Password
-            br
-            input(type="password" id="password" name="password" placeholder="Enter Password")
+    
+            form(method="POST")
+                div(class="input-field")
+                    input(type="email" id="email" name="email")
+                    label(for="email") Enter Email
+
+                div(class="input-field")
+                    input(type="password" id="password" name="password")
+                    label(for="password") Enter Password
 
 
-        div
-            button(type="submit") Login
+                div(class="input-field center")
+                    button(type="submit" class="btn waves-effect waves-blue blue ligthen-3" ) Login

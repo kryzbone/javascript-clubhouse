@@ -1,23 +1,28 @@
 extends layout
 
 block content
-    h1 #{title}
+   
+    h1(class="center-align") #{title}
 
-    if(errors)
+    if errors
         ul
             each error in errors
-                li #{error.msg}
+                li 
+                    div(class="chip red ") 
+                        i(class="material-icons white-text left") error 
+                        span(class="white-text") #{error.msg}
+                        i(class="close material-icons white-text") close
 
     if question 
         div
-            img(src=question.qn alt="question" width="1000")
+            img(src=question.qn alt="question" class="responsive-img")
         br
         form(method="POST") 
             label(for="ans") Select Answer: 
-            br
-            - const styles = { width: "50%" }
-            select(name="ans" style=styles)
+            select(name="ans" class="browser-default")
                 each opt in question.opt
                     option(value=opt) #{opt.toUpperCase()}
 
-            button(type="submit") Submit
+            div(class="input-field center")
+                button(type="submit" class="btn waves-effect waves-blue blue ligthen-3 dash-btn") Submit
+                a(href="/" class="btn waves-effect waves-blue blue ligthen-3") Cancel

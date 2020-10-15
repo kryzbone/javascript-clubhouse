@@ -1,0 +1,63 @@
+h1 {
+    font-size: 2.5rem;
+}
+
+h5 {
+    margin-bottom: 1rem;
+   
+}
+
+.brand-logo {
+    margin-left: .5rem;
+}
+
+.input-field label {
+    font-size: 1.2rem;
+  }
+
+.input-field input:focus + label {
+    color: #2196f3 !important;
+}
+  
+.input-field input:focus {
+border-bottom: 1px solid #2196f3 !important;
+}
+
+.input-field textarea.materialize-textarea:focus + label {
+    color: #2196f3;
+}
+  
+.input-field textarea.materialize-textarea:focus {
+    border-bottom: 2px solid #2196f3;
+}
+
+.chip {
+    border-radius: .4rem;
+    padding: 0 .3rem;
+}
+
+i.left {
+    margin-top: 4px;
+}
+
+.card .card-content p {
+    margin-bottom: .5rem;
+}
+
+.card .card-action {
+    border-top: 1px solid #fff;
+}
+
+.dash-btn {
+    margin-right: .5rem;
+}
+
+.badge {
+    padding: .3rem;
+    margin-bottom: .5rem;
+    border-radius: .3rem;
+}
+
+select {
+    border: 1px solid #2196f3
+}

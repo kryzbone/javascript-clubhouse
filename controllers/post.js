@@ -18,7 +18,7 @@ exports.postGet = (req, res, next) => {
 exports.postPost = [
     //validate data from user
     body("title").isString().trim().escape(),
-    body("message").notEmpty().withMessage("You can't do that my friend").isString().trim().escape(),
+    body("message").notEmpty().withMessage("You can't do that my friend. Enter message now").isString().trim().escape(),
 
     (req, res, next) => {
         //check if user is Logged in

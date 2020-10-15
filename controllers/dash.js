@@ -4,8 +4,10 @@ const { temp } = require("../cache");
 
 
 
+
 exports.dash = (req, res, next) => {
     if(!req.isAuthenticated()) return res.redirect("/login");
+    if(req.user.status === "stale") return res.redirect('/test')
     
     if(temp.dashMessages) return res.render("dash", { data: temp.dashMessages })
 

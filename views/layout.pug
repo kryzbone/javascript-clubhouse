@@ -4,22 +4,32 @@ html
         meta(charset="utf-8")
         meta(name='viewport', content='width=device-width, initial-scale=1')
         title JavaScript | Clubhouse
-        //- link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
+        link(rel="stylesheet" href="/styles.css")
 
     body
-        div
-            div
-                div
-                    a(href="/") Logo
-            br
-            div
-                if currentUser 
-                    a(href="/logout") Logout
-                else
-                    a(href="/login") Login #[span   ]
+        nav(class="blue")
+            div(class="nav-wrapper ")
+                a(href="/" class="brand-logo left") JS CLUBHOUSE
+            
+                ul(class="right")
+                    if currentUser 
+                        li
+                            a(href="/logout" ) Logout
+                    else
+                        li
+                            a(href="/login" ) Login #[span   ]
+                        li
+                            a(href="/signup") Register
 
-                    a(href="/signup") Register
-        hr
+        div(class="container")
         
-        
-        block content
+            block content
+
+
+
+
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js")
+        script(src="/main.js")

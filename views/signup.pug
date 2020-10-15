@@ -2,37 +2,41 @@ extends layout
 
 block content
 
-    h1 Sign Up Form
+    div(class="row")
+        div(class="col s12 m8 offset-m2 l6 offset-l3")
 
-    if errors
-        ul
-            each error in errors
-                li #{error.msg}
-    
-    form(method="POST")
-        div
-            label(for="first") First Name
-            br
-            input(type="text" id="first" name="first" placeholder="First Name" value=(data? data.first : ""))
+            h1(class="center-align") Sign Up Form
 
-        div
-            label(for="last") Last Name
-            br
-            input(type="text" id="last" name="last" placeholder="Last Name" value=(data? data.last : ""))
- 
-        div
-            label(for="email") Email
-            br
-            input(type="email" id="email" name="email" placeholder="email" value=(data? data.email : ""))
+            if errors
+                ul
+                    each error in errors
+                        li 
+                            div(class="chip red")    
+                                i(class="material-icons white-text left") error 
+                                span(class="white-text") #{error.msg}
+                                i(class="close material-icons white-text") close
 
-        div
-            label(for="password") Passowrd
-            br
-            input(type="password" id="password" name="password" placeholder="password" )
 
-        div
-            label(for="comfirm-password") Comfirm Password
-            br
-            input(type="password" id="" name="comfirm-password" placeholder="comfirm-password")
-        div
-            button(type="submit") Sign Up
+            form(method="POST")
+                div(class="input-field")
+                    input(type="text" id="first" name="first" value=(data? data.first : ""))
+                    label(for="first") First Name
+
+                div(class="input-field")
+                    input(type="text" id="last" name="last" value=(data? data.last : ""))
+                    label(for="last") Last Name
+        
+                div(class="input-field")
+                    input(type="email" id="email" name="email" value=(data? data.email : ""))
+                    label(for="email") Email                
+
+                div(class="input-field")
+                    input(type="password" id="password" name="password" )
+                    label(for="password") Passowrd
+
+                div(class="input-field")
+                    input(type="password" id="" name="comfirm-password")
+                    label(for="comfirm-password") Comfirm Password
+
+                div(class="input-field center")
+                    button(type="submit" class="btn waves-effect waves-blue blue ligthen-3") Sign Up
