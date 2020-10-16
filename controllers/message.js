@@ -35,8 +35,8 @@ exports.messageEdit =  (req, res, next) => {
 //message edit post handler
 exports.messageEditPost = [
     //validate data from user
-    body("title").isString().trim().escape(),
-    body("message").notEmpty().withMessage("You can't do that my friend").isString().trim().escape(),
+    body("title").isString().trim().blacklist("<>"),
+    body("message").notEmpty().withMessage("You can't do that my friend").isString().trim().blacklist("<>"),
 
     
     (req, res, next) => {
